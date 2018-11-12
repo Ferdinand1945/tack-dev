@@ -1,0 +1,220 @@
+
+*** These modified files were found in JOE when it aborted on Mon Oct 29 11:26:54 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+11
+
+*** File '(Unnamed)'
+debug
+script
+item
+item_id
+item_id
+id
+add_i
+item_id
+
+*** File '(Unnamed)'
+fetch.php
+index.php
+database.php
+encript.php
+prueba.php
+prueba.php
+index.php
+prueba.php
+prueba.php
+prueba.php
+encript.php
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Mon Oct 29 18:32:11 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File 'encript.php'
+<?php
+
+/*
+function decryptStringArray ($stringArray, $key = "Your secret salt thingie")
+{
+    $s = unserialize(rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode(strtr($stringArray, '-_,', '+/=')), MCRYPT_MODE_CBC, md5(md5($key))), "\0"));
+    return $s;
+}
+
+function encryptStringArray ($stringArray, $key = "Your secret salt thingie") 
+{
+    $s = strtr(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), serialize($stringArray), MCRYPT_MODE_CBC, md5(md5($key)))), '+/=', '-_,');
+    return $s;
+}
+
+*/
+
+function decryptStringArray ($stringArray, $key = "Your secret salt thingie")
+{
+    $s = unserialize(rtrim(openssl_decrypt($stringArray, "aes128",$key,0,"tacktacktacktack")));
+    return $s;
+}
+
+function encryptStringArray ($stringArray, $key = "Your secret salt thingie") 
+{
+    $s = strtr(base64_encode(openssl_encrypt ($stringArray, "aes128",$key,0,"tacktacktacktack")));
+}
+
+function prepareUrl($url, $key = "Your secret salt thingie")
+{
+    $url = explode("?",$url,2);
+    if(sizeof($url) <= 1)
+        return $url;
+    else
+        return $url[0]."?params=".encryptStringArray($url[1],$key);
+}
+
+function setGET($params,$key = "Your secret salt thingie") 
+{
+    $params = decryptStringArray($params,$key);
+    $param_pairs = explode('&',$params);
+    foreach($param_pairs as $pair)
+    {
+        $split_pair = explode('=',$pair);
+        $_GET[$split_pair[0]] = $split_pair[1];
+    }
+}
+
+?>
+*** File '(Unnamed)'
+debug
+script
+item
+item_id
+item_id
+id
+add_i
+item_id
+
+*** File '(Unnamed)'
+index.php
+database.php
+encript.php
+prueba.php
+prueba.php
+index.php
+prueba.php
+prueba.php
+prueba.php
+encript.php
+encript.php
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Tue Oct 30 10:12:55 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+debug
+script
+item
+item_id
+item_id
+id
+add_i
+item_id
+
+*** File '(Unnamed)'
+leer.php
+leer.php
+leer.php
+leer.php
+escribir.php
+escribir.php
+escribir.php
+escribir.php
+escribir.php
+escribir.php
+leer.php
+leer.php
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Tue Oct 30 12:37:12 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+debug
+script
+item
+item_id
+item_id
+id
+add_i
+item_id
+
+*** File '(Unnamed)'
+inicio.php
+inicio.php
+inicio.php
+claper_index.php
+index.php
+in
+index.php
+index.php
+index.php
+header.php
+database.php
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Tue Oct 30 12:38:35 2018
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+31
+
+*** File '(Unnamed)'
+debug
+script
+item
+item_id
+item_id
+id
+add_i
+item_id
+
+*** File '(Unnamed)'
+inicio.php
+inicio.php
+inicio.php
+inicio.php
+claper_index.php
+index.php
+in
+index.php
+index.php
+index.php
+index.php
+index.php
+index.php
+index.php
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

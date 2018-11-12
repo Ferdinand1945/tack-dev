@@ -1,0 +1,16 @@
+<script>
+    $(function(){
+        $('#llamaMozo').on('click', function() {      
+            $.get("llamador.php?tipo=M");
+//            alert('llamador.php?tipo=M');
+            return false;
+        });
+               
+        $('#pideCuenta').on('click', function() {
+            $.get("llamador.php?tipo=C");
+//            alert('llamador.php?tipo=C');
+            return false;
+        });
+    });
+</script>
+     

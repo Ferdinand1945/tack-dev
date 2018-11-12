@@ -1,0 +1,43 @@
+<?php
+
+/*
+$_SESSION['mesa']=$mesa;
+$_SESSION['bar']=$bar;
+$_SESSION['token']=$_GET['d'];
+*/
+include_once("database.php");
+
+session_start();
+
+//echo $_SESSION['mesa'];
+//echo $_SESSION['token'];
+if (!isset ($_SESSION['token'])){
+//die ("error con la sesion al llamar al mozo");
+    die ("<img src=images/error.png>");
+} 
+$tipo ='0';
+switch ($_GET['tipo']){
+    case 'M':
+        $tipo = 'M';
+        break;
+    case 'C':
+        $tipo = 'C';
+        break;
+}
+
+
+        
+//$var = urldecode(strtr($_GET['d'],"'",'%'));
+//echo "antes de la DB: '<br>";
+$database->pedirMozo ($_SESSION['mesa'],$_SESSION['bar'], $tipo);
+//echo "luego de desencodear queda: '<br>";
+//$respuesta = openssl_decrypt($_GET['d'], 'aes128','claper',0,'tacktacktacktack');
+/*
+parse_str($respuesta);
+
+$_SESSION['mesa']=$mesa;
+$_SESSION['bar']=$bar;
+$_SESSION['token']=$_GET['d'];
+*/
+
+?>

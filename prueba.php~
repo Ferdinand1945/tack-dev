@@ -1,0 +1,14 @@
+<?php
+$parametro_encriptado = $_GET['d'];
+
+echo "parametro: ".$parametro_encriptado."<br>";
+
+$parametro_desencriptado = openssl_decrypt($parametro_encriptado, "aes128","claper",0,"tacktacktacktack");
+
+echo "datos: ".$parametro_desencriptado."<br>";
+
+//   +IfuAzMxOoI0G9INfdUuhN3cNyCjWmgXVvkn+nFhVgw=
+
+echo "encode : ". urlencode("bar=2&mesa=4");
+
+?>
