@@ -1,6 +1,6 @@
 <?php 
-   
-require_once("header.php"); 
+
+require_once("header.php");
 if( !isset($_SESSION['products_in_popup_cart']) || count($_SESSION['products_in_popup_cart'])==0 || !isset($_SESSION['bar']) || !isset($_SESSION['mesa'])  ){
     header("location: index.php");
 }
@@ -30,31 +30,31 @@ $ultpedido = mysqli_insert_id($conn);
 
 //var_dump($_SESSION["products_in_popup_cart"]);
 
-    foreach($_SESSION["products_in_popup_cart"] as $item){ 			
+    foreach($_SESSION["products_in_popup_cart"] as $item){
         $sql = "INSERT INTO `contenidoPedidos` (`codigoContenido`, `codigoPedido`, `codigoProducto`, `cantidad`) VALUES (NULL, '".strval($ultpedido)."', '".$item[0]."', '".$item[1]."')";
-//echo $sql."<br>";        
-        
+//echo $sql."<br>";
+
         $resultado = mysqli_query($conn,$sql);
         if (!$resultado){
             echo "<br> error de bd ";
             die("connection failed: " . mysqli_connect_error());
         }
 
-/*        
+/*
         echo "<br> ".$sql." <br>";
         echo "producto: ".$item["item_name"]."<br>" ;
         echo "Qty ".$item["item_qty"];
-        echo "<br".$item["item_price"] ; 
+        echo "<br".$item["item_price"] ;
 */
     }
-      
+
 
 // } cierra el if tipoPedido == P
 mysqli_close($conn);
 //session_destroy();
 unset($_SESSION['products_in_popup_cart']);
-//header("location: index.php?bar=".$_SESSION['bar']."&mesa=".$_SESSION['mesa']);        
+//header("location: index.php?bar=".$_SESSION['bar']."&mesa=".$_SESSION['mesa']);
 exit ("Su comanda esta siendo procesada");
 //header("location: index.php");
 require_once("footer.php");
-?>  
+?>

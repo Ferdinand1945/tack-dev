@@ -1,6 +1,6 @@
 <footer class='footerHolder'>
     <div class="footer">
-        
+
     </div>
 </footer>
 

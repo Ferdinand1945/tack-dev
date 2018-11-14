@@ -2,7 +2,7 @@
 
 <br>
 <table>
-<?php 
+<?php
 
 
     foreach ($_POST as $key => $value) {

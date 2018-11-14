@@ -6,7 +6,7 @@ function decryptStringArray ($stringArray, $key = "Your secret salt thingie")
     return $s;
 }
 
-function encryptStringArray ($stringArray, $key = "Your secret salt thingie") 
+function encryptStringArray ($stringArray, $key = "Your secret salt thingie")
 {
     $s = strtr(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), serialize($stringArray), MCRYPT_MODE_CBC, md5(md5($key)))), '+/=', '-_,');
     return $s;
@@ -21,7 +21,7 @@ function prepareUrl($url, $key = "Your secret salt thingie")
         return $url[0]."?params=".encryptStringArray($url[1],$key);
 }
 
-function setGET($params,$key = "Your secret salt thingie") 
+function setGET($params,$key = "Your secret salt thingie")
 {
     $params = decryptStringArray($params,$key);
     $param_pairs = explode('&',$params);

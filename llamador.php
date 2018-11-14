@@ -14,7 +14,7 @@ if(session_status()==PHP_SESSION_NONE){session_start();}
 if ((!isset ($_SESSION['bar'])) || (!isset ($_SESSION['mesa']))){
 //die ("error con la sesion al llamar al mozo");
     die ("<img src=images/error.png>");
-} 
+}
 $tipo ='0';
 switch ($_POST['tipo']){
     case 'M':
@@ -26,7 +26,7 @@ switch ($_POST['tipo']){
 }
 
 
-        
+
 //$var = urldecode(strtr($_GET['d'],"'",'%'));
 //echo "antes de la DB: '<br>";
 $database->pedirMozo ($_SESSION['mesa'],$_SESSION['bar'], $tipo);
