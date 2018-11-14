@@ -1,0 +1,33 @@
+.vendor(@property, @value) {
+               @{property}: @value;
+        -khtml-@{property}: @value;
+          -moz-@{property}: @value;
+       -webkit-@{property}: @value;
+}
+
+.border-radius (@value) {
+    .vendor(border-radius, @value);
+}
+
+.box-shadow (@shadow1) {
+    .vendor(box-shadow, @shadow1);
+}
+
+.box-shadow (@shadow1, @shadow2) {
+    @temp: @shadow1, @shadow2;
+    .box-shadow(@temp);
+}
+
+.box-shadow (@shadow1, @shadow2, @shadow3) {
+    @temp: @shadow1, @shadow2, @shadow3;
+    .box-shadow(@temp);
+}
+
+.box-shadow (@shadow1, @shadow2, @shadow3, @shadow4) {
+    @temp: @shadow1, @shadow2, @shadow3, @shadow4;
+    .box-shadow(@temp);
+}
+
+.transition (@value) {
+    .vendor(transition, @value);
+}

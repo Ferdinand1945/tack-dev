@@ -1,0 +1,29 @@
+{
+    "emptyRule": true,
+    "excludedFiles": ["./src/less/_mixins.less"],
+    "fileExtensions": [".less", ".css"],
+    "finalNewline": false,
+    "hexLength": "short",
+    "hexNotation": "lowercase",
+    "importantRule": false,
+    "importPath": {
+        "filenameExtension": true
+    },
+    "maxCharPerLine": 999999,
+    "newlineAfterBlock": true,
+    "propertyOrdering": false,
+    "qualifyingElement": false,
+    "singleLinePerProperty": true,
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space" // Comments are allowed
+    },
+    "spaceAroundComma": {
+        "allowNewline": true,
+        "style": "after"
+    },
+    "stringQuotes": false,
+    "trailingWhitespace": false,
+    "urlQuotes": true,
+    "zeroUnit": "style"
+}
