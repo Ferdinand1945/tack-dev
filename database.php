@@ -2,18 +2,18 @@
 
 /* This file contains methods to connect to DB, search for elements etc.....*/
 
-/* Request MySQL Conf file with credentials */	
+/* Request MySQL Conf file with credentials */
 require_once("dbConf.php");
 
 class MySQLDatabase
 {
     private $connection;
     public $last_query;
-   
+
     private $dbMenuItems="menuItems";
     public $imageCategories = array('Comidas','Bebidas','Postres');
-    
- 
+
+
     function __construct(){
         $this->open_connection();
 //        $this->set_charset("utf8");
@@ -26,7 +26,7 @@ class MySQLDatabase
             die("Unable to connect to Database");
         }
     }
-    
+
 
     public function close_connection(){
         if(isset($this->connection)){
@@ -34,45 +34,43 @@ class MySQLDatabase
             unset($this->connection);
         }
     }
-    
- 
+
+
     public function query($sql){
         $this->last_query = $sql;
         $result = mysqli_query($this->connection, $sql);
-        $this->confirm_query($result); 
+        $this->confirm_query($result);
         return $result;
     }
-    
- 
+
+
     private function confirm_query($result){
         if(!$result){
             $output = "Database query failed: " . mysqli_error($this->connection) . "<br />";
             $output .= "Last MySQL Query: " . $this->last_query;
-           die($output);  
+           die($output);
         }
     }
-   
+
     public function getNombreBar($codigo) {
-        $result = $this->query("SELECT Nombre FROM `Bares` WHERE codigo=".$codigo);
-        return ( $this->fetch_array($result)['Nombre']);
+        $result = $this->query("SELECT name FROM restaurants WHERE id=".$codigo);
+        return ( $this->fetch_array($result)['name']);
     }
-    
+
     public function pedirMozo ($mesa, $bar, $tipo) {
-//        $result = $this->query("SELECT Nombre FROM `Bares` WHERE codigo=".$codigo);
         $sql="INSERT INTO `Pedidos`(`codigoPedido`, `codigoBar`, `estado`, `mesa`, `tipoPedido`, `hora`) VALUES (NULL,".$bar.",1,".$mesa.",'".$tipo."',NULL)";
-//echo "pedimos el mozo con la sentencia ".$sql."<br>";        
         $result = $this->query($sql);
         if (!$result){
             die ("no hubo resultado con el query");
         }
-        
+
         return true;
     }
 
     public function fetch_array($result){
         return mysqli_fetch_array($result);
     }
-    
+
     public function find_by_query($query=""){
 //        global $database;
 //        $this->set_charset("utf8");
@@ -82,9 +80,9 @@ class MySQLDatabase
             $arrayWithData[]=$row;
         }
         $this->close_connection();
-        return $arrayWithData;   
+        return $arrayWithData;
     }
-        
+
     public function ejecutarConsulta($query=""){
         $conn = mysqli_connect($servername, $username, $password, $database);
         mysqli_set_charset($conn, "utf8");
@@ -99,16 +97,16 @@ class MySQLDatabase
         while($row = $database->fetch_array($result)){
             $object_array[]=$row;
         }
-        
-        return $object_array; 
+
+        return $object_array;
         $this->close_connection();
-    }    
-    
+    }
+
 
     public function getFileCategories(){
         $categories = $this->imageCategories;
         return $categories;
-    }      
+    }
 }
 
 $database = new MySQLDatabase();
